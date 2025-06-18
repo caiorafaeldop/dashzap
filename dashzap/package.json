@@ -1,16 +1,15 @@
 {
   "name": "dashzap",
-  "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
-"scripts": {
-  "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
-  "build": "tsc",
-  "start": "node dist/server.js",
-  "test": "vitest"
-},
-
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "test": "vitest"
+  },
   "devDependencies": {
+    "@types/express": "^5.0.3",
     "eslint": "^9.29.0",
     "prettier": "^3.5.3",
     "supertest": "^7.1.1",
@@ -27,5 +26,4 @@
     "prisma": "^6.10.0",
     "zod": "^3.25.67"
   }
-  
 }
