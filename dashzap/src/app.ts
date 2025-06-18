@@ -1,18 +1,11 @@
 import express from "express";
-import dotenv from "dotenv";
-import dashboardRoutes from "modules/dashboard/dashboard.routes";
-
-dotenv.config();
+import dashboardRoutes from "./modules/dashboard/dashboard.routes";
 
 const app = express();
 
 app.use(express.json());
 
-// usar as rotas de dashboard
+// Atenção: aqui passamos o Router, nunca um método de controller
 app.use("/dashboards", dashboardRoutes);
-
-app.get("/", (_req: any, res: { send: (arg0: string) => void }) => {
-  res.send("✅ Dashzap API Online");
-});
 
 export default app;

@@ -1,43 +1,43 @@
-import { Router } from "express";
-
+import { Router, Request, Response } from "express";
 import { DashboardController } from "./dashboard.controller";
 
 const router = Router();
 const controller = new DashboardController();
 
-router.post("/", async (req, res) => {
+// Aqui usamos arrow functions async que chamam o método, garantindo o contexto correto e tratamento de erros
+router.post("/", async (req: Request, res: Response, next) => {
   try {
     await controller.create(req, res);
-  } catch (error) {
-    res.status(500).json({ error: "Internal server error" });
+  } catch (err) {
+    next(err);
   }
 });
-router.get("/", async (req, res) => {
+router.get("/", async (req: Request, res: Response, next) => {
   try {
     await controller.findAll(req, res);
-  } catch (error) {
-    res.status(500).json({ error: "Internal server error" });
+  } catch (err) {
+    next(err);
   }
 });
-router.get("/:id", async (req, res) => {
+router.get("/:id", async (req: Request, res: Response, next) => {
   try {
     await controller.findById(req, res);
-  } catch (error) {
-    res.status(500).json({ error: "Internal server error" });
+  } catch (err) {
+    next(err);
   }
 });
-router.put("/:id", async (req, res) => {
+router.put("/:id", async (req: Request, res: Response, next) => {
   try {
     await controller.update(req, res);
-  } catch (error) {
-    res.status(500).json({ error: "Internal server error" });
+  } catch (err) {
+    next(err);
   }
 });
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", async (req: Request, res: Response, next) => {
   try {
     await controller.delete(req, res);
-  } catch (error) {
-    res.status(500).json({ error: "Internal server error" });
+  } catch (err) {
+    next(err);
   }
 });
 
